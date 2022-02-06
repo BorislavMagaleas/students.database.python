@@ -38,6 +38,12 @@ def addStudent():
     stud_years.append(s_year)
     stud_grades.append(s_grade)
 
+def checkGrade(st_grade):
+    return st_grade >= 5.0 and st_grade <= 10.0
+
+def checkYear(st_year):
+    return st_year >= 1 and st_year <= 5
+
 def editStudent():
     s_name = input("Enter the name of the student whose data need to be edited: ")
     s_index = -1
@@ -49,23 +55,26 @@ def editStudent():
     if s_index >= 0:
         data = input("What do you want to edit (year/grade): ")
         if data == "year":
-            stud_years.pop(s_index)
             s_year = int(input("Enter edited student year: "))
-            if s_year >= 1 and s_year <= 5:
+            if checkYear(s_year):
+                stud_years.pop(s_index)
                 stud_years.insert(s_index,s_year)
         elif data == "grade":
-            stud_grades.pop(s_index)
             s_grade = float(input("Enter edited student grade: "))
-            if s_grade >= 5.0 and s_grade <= 10.0:
+            if checkGrade(s_grade): 
+                stud_grades.pop(s_index)
                 stud_grades.insert(s_index,s_grade)
+            else:
+                pass
         elif data == "year and grade":
-            stud_years.pop(s_index)
-            stud_grades.pop(s_index)
+            
             s_year = int(input("Enter edited student year: "))
             s_grade = float(input("Enter edited student grade: "))
-            if s_year >= 1 and s_year <= 5:
+            if checkYear(s_year):
+                stud_years.pop(s_index)
                 stud_years.insert(s_index,s_year)
-            if s_grade >= 5.0 and s_grade <= 10.0:
+            if checkGrade(s_grade):
+                stud_grades.pop(s_index)
                 stud_grades.insert(s_index,s_grade)
             
 
